@@ -7,7 +7,7 @@ from .forms import PostForm
 def post_list(request):
     # lte = less than equal => published_date기 현재 시간보다 작거나 같은 Post만 필터링
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'blog/post_list.html', {'posts': reversed(posts)})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
